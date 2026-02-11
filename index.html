@@ -541,10 +541,8 @@
         teamSection.style.display = this.checked ? 'block' : 'none';
     });
 
-    // ✅ Your Google Form Action URL
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe7R3TioxgZeCP2J0aMH9k5OM2lnzHy2oSQZPPSjZvQuxTDTw/formResponse";
 
-    // ✅ Your Real Entry IDs
     const FORM_FIELDS = {
         name: 'entry.1265900779',
         email: 'entry.1958841164',
@@ -560,36 +558,28 @@
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-       const checkboxes = document.querySelectorAll('input[name="events"]:checked');
+        const checkboxes = document.querySelectorAll('input[name="events"]:checked');
 
-if (checkboxes.length === 0) {
-    alert('Please select at least one event to participate in!');
-    return;
-}
+        if (checkboxes.length === 0) {
+            alert('Please select at least one event to participate in!');
+            return;
+        }
 
-// ✅ FIRST create formData
-const formData = new FormData();
+        const formData = new FormData();
 
-formData.append(FORM_FIELDS.name, document.getElementById('name').value);
-formData.append(FORM_FIELDS.email, document.getElementById('email').value);
-formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
-formData.append(FORM_FIELDS.college, document.getElementById('college').value);
-formData.append(FORM_FIELDS.department, document.getElementById('department').value);
-formData.append(FORM_FIELDS.year, document.getElementById('year').value);
-formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
-formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
+        formData.append(FORM_FIELDS.name, document.getElementById('name').value);
+        formData.append(FORM_FIELDS.email, document.getElementById('email').value);
+        formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
+        formData.append(FORM_FIELDS.college, document.getElementById('college').value);
+        formData.append(FORM_FIELDS.department, document.getElementById('department').value);
+        formData.append(FORM_FIELDS.year, document.getElementById('year').value);
+        formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
+        formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
 
-// ✅ THEN append checkboxes properly
-checkboxes.forEach(cb => {
-    const labels = {
-        'simutech': 'Simutech Arena',
-        'murder-mystery': 'Murder Mystery',
-        'concept-clash': 'Concept Clash',
-        'code-sprint': 'Code Sprint'
-    };
-
-    formData.append(FORM_FIELDS.events, labels[cb.value]);
-});
+        // ✅ Correct checkbox handling (NO mapping)
+        checkboxes.forEach(cb => {
+            formData.append(FORM_FIELDS.events, cb.value);
+        });
 
         fetch(GOOGLE_FORM_URL, {
             method: 'POST',
@@ -603,8 +593,6 @@ checkboxes.forEach(cb => {
             setTimeout(function() {
                 document.getElementById('successMessage').style.display = 'none';
             }, 5000);
-
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
         }).catch(function(error) {
             alert('There was an error submitting the form. Please try again.');
             console.error('Form submission error:', error);
@@ -612,5 +600,3 @@ checkboxes.forEach(cb => {
     });
 </script>
 
-</body>
-</html> update
