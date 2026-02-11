@@ -560,32 +560,36 @@
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const checkboxes = document.querySelectorAll('input[name="events"]:checked');
-        if (checkboxes.length === 0) {
-            alert('Please select at least one event to participate in!');
-            return;
-        }
+       const checkboxes = document.querySelectorAll('input[name="events"]:checked');
 
-        const selectedEvents = Array.from(checkboxes).map(cb => {
-            const labels = {
-                'simutech': 'Simutech Arena',
-                'murder-mystery': 'Murder Mystery',
-                'concept-clash': 'Concept Clash',
-                'code-sprint': 'Code Sprint'
-            };
-            return labels[cb.value];
-        }).join(', ');
+if (checkboxes.length === 0) {
+    alert('Please select at least one event to participate in!');
+    return;
+}
 
-        const formData = new FormData();
-        formData.append(FORM_FIELDS.name, document.getElementById('name').value);
-        formData.append(FORM_FIELDS.email, document.getElementById('email').value);
-        formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
-        formData.append(FORM_FIELDS.college, document.getElementById('college').value);
-        formData.append(FORM_FIELDS.department, document.getElementById('department').value);
-        formData.append(FORM_FIELDS.year, document.getElementById('year').value);
-        formData.append(FORM_FIELDS.events, selectedEvents);
-        formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
-        formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
+// ✅ FIRST create formData
+const formData = new FormData();
+
+formData.append(FORM_FIELDS.name, document.getElementById('name').value);
+formData.append(FORM_FIELDS.email, document.getElementById('email').value);
+formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
+formData.append(FORM_FIELDS.college, document.getElementById('college').value);
+formData.append(FORM_FIELDS.department, document.getElementById('department').value);
+formData.append(FORM_FIELDS.year, document.getElementById('year').value);
+formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
+formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
+
+// ✅ THEN append checkboxes properly
+checkboxes.forEach(cb => {
+    const labels = {
+        'simutech': 'Simutech Arena',
+        'murder-mystery': 'Murder Mystery',
+        'concept-clash': 'Concept Clash',
+        'code-sprint': 'Code Sprint'
+    };
+
+    formData.append(FORM_FIELDS.events, labels[cb.value]);
+});
 
         fetch(GOOGLE_FORM_URL, {
             method: 'POST',
