@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTorrent 2K26 - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f59e0b 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #f06595 50%, #ff8c42 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header h2 {
+            font-size: 1.5em;
+            font-weight: normal;
+            opacity: 0.95;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .event-info {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .event-card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .event-card.yellow {
+            background: linear-gradient(135deg, #ffd93d 0%, #ffb700 100%);
+        }
+
+        .event-card.coral {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+        }
+
+        .event-card.purple {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .event-card.cyan {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+        }
+
+        .event-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .event-card.yellow h3,
+        .event-card.yellow p,
+        .event-card.yellow li {
+            color: #1f2937;
+        }
+
+        .event-card.coral h3,
+        .event-card.coral p,
+        .event-card.coral li,
+        .event-card.purple h3,
+        .event-card.purple p,
+        .event-card.purple li,
+        .event-card.cyan h3,
+        .event-card.cyan p,
+        .event-card.cyan li {
+            color: white;
+        }
+
+        .event-card p {
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .event-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .event-card li {
+            padding: 5px 0;
+            color: #4b5563;
+        }
+
+        .event-card li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .event-card.yellow li:before {
+            color: #059669;
+        }
+
+        .event-card.coral li:before,
+        .event-card.purple li:before,
+        .event-card.cyan li:before {
+            color: #fde047;
+        }
+
+        .registration-section {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 50%, #fce7f3 100%);
+        }
+
+        .registration-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #f43f5e;
+            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            margin-top: 20px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #f59e0b 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 63, 94, 0.5);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .coordinators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coordinator {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .coordinator p {
+            margin: 5px 0;
+        }
+
+        .venue {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header h2 {
+                font-size: 1.2em;
+            }
+
+            .events-grid {
+                padding: 20px;
+            }
+
+            .registration-section {
+                padding: 30px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logos">
+                <div class="logo-placeholder">Academy Logo</div>
+                <div>
+                    <h1>TECHTORRENT 2K26</h1>
+                    <h2>SIDDHARTHA ACADEMY OF HIGHER EDUCATION</h2>
+                    <p>An Institution Deemed to be University</p>
+                </div>
+                <div class="logo-placeholder">IETE Logo</div>
+            </div>
+        </div>
+
+        <div class="event-info">
+            <div class="event-date">📅 February 16th - 17th, 2K26</div>
+            <h2 style="color: #1f2937; margin-top: 20px;">A 2-Day Technical Event by IETE</h2>
+        </div>
+
+        <div class="events-grid">
+            <div class="event-card yellow">
+                <h3>🎯 SIMUTECH ARENA</h3>
+                <p><strong>Simulation Challenge</strong></p>
+                <p>Solve a given text/circuit problem and demonstrate results through simulation.</p>
+            </div>
+
+            <div class="event-card coral">
+                <h3>🔍 MURDER MYSTERY</h3>
+                <p><strong>Digital Detective Quiz</strong></p>
+                <ul>
+                    <li>Text Round</li>
+                    <li>Video Round</li>
+                    <li>Audio Round</li>
+                    <li>Image Round</li>
+                </ul>
+            </div>
+
+            <div class="event-card purple">
+                <h3>💡 CONCEPT CLASH</h3>
+                <p><strong>(Spot Idea Presentation)</strong></p>
+                <ul>
+                    <li>Team of 3</li>
+                    <li>Themes revealed on the spot</li>
+                    <li>Prepare & present by afternoon</li>
+                </ul>
+            </div>
+
+            <div class="event-card cyan">
+                <h3>💻 CODE SPRINT</h3>
+                <p><strong>Programming Challenge</strong></p>
+                <p>Solve coding problems in various programming languages and compile to show output.</p>
+            </div>
+        </div>
+
+        <div class="registration-section">
+            <h2>🎓 Register Now</h2>
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="college">College/University *</label>
+                        <input type="text" id="college" name="college" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year">Year of Study *</label>
+                        <select id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width checkbox-group">
+                        <label style="font-weight: 600; margin-bottom: 15px;">Select Events to Participate *</label>
+                        <label>
+                            <input type="checkbox" name="events" value="simutech" id="event1">
+                            Simutech Arena
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="murder-mystery" id="event2">
+                            Murder Mystery
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="concept-clash" id="event3">
+                            Concept Clash (Team of 3)
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="code-sprint" id="event4">
+                            Code Sprint
+                        </label>
+                    </div>
+
+                    <div class="form-group full-width" id="teamMembersSection" style="display: none;">
+                        <label for="teamMembers">Team Members (for Concept Clash) - Names & Phone Numbers</label>
+                        <textarea id="teamMembers" name="teamMembers" placeholder="Member 1: Name, Phone&#10;Member 2: Name, Phone&#10;Member 3: Name, Phone"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="comments">Additional Comments/Questions</label>
+                        <textarea id="comments" name="comments" placeholder="Any special requirements or questions?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Register for TechTorrent 2K26</button>
+                </div>
+                <div class="success-message" id="successMessage">
+                    ✅ Registration Successful! We'll contact you soon with further details.
+                </div>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            
+            <p class="venue"><strong>📍 Venue:</strong> ECE Dept., V.L.DUTT Block, Siddhartha Academy Of Higher Education, Kanuru, Vijayawada, 520007</p>
+
+            <div style="margin: 30px 0;">
+                <p><strong>Faculty Co-ordinator:</strong> Dr. V. Saritha</p>
+                <p><strong>Contact:</strong> +91 9704148481</p>
+                <p><strong>Convenor:</strong> Dr. D. Venkata Rao</p>
+                <p><strong>(HOD-ECE, Dean-School of Engineering)</strong></p>
+            </div>
+
+            <h3 style="margin-top: 40px;">Student Coordinators</h3>
+            <div class="coordinators">
+                <div class="coordinator">
+                    <p><strong>V. Jatin Karthik</strong></p>
+                    <p>📞 9441371143</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>R. Rahul Varma</strong></p>
+                    <p>📞 9573188933</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>G. Likitha Sri</strong></p>
+                    <p>📞 9618977807</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>P. Lokesh</strong></p>
+                    <p>📞 9182147151</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide team members field based on Concept Clash selection
+        document.getElementById('event3').addEventListener('change', function() {
+            const teamSection = document.getElementById('teamMembersSection');
+            if (this.checked) {
+                teamSection.style.display = 'block';
+            } else {
+                teamSection.style.display = 'none';
+            }
+        });
+
+        // ============================================================
+        // SETUP INSTRUCTIONS FOR GOOGLE FORMS INTEGRATION:
+        // ============================================================
+        // 1. Go to https://forms.google.com and create a new form
+        // 2. Add these fields (match the names exactly):
+        //    - Full Name (Short answer)
+        //    - Email Address (Short answer)
+        //    - Phone Number (Short answer)
+        //    - College/University (Short answer)
+        //    - Department (Short answer)
+        //    - Year of Study (Multiple choice: 1st Year, 2nd Year, 3rd Year, 4th Year)
+        //    - Select Events (Checkboxes: Simutech Arena, Murder Mystery, Concept Clash, Code Sprint)
+        //    - Team Members (Paragraph)
+        //    - Additional Comments (Paragraph)
+        // 
+        // 3. Click the 3-dot menu → "Get pre-filled link"
+        // 4. Fill in test data for each field
+        // 5. Click "Get link" and copy the URL
+        // 6. Replace 'YOUR_GOOGLE_FORM_URL' below with your form's action URL
+        //    (It should look like: https://docs.google.com/forms/d/e/FORM_ID/formResponse)
+        // 7. Get the entry IDs from the pre-filled URL (they look like entry.123456789)
+        // 8. Replace the entry IDs in the code below
+        // ============================================================
+
+        const GOOGLE_FORM_URL = 'YOUR_GOOGLE_FORM_URL'; // Replace this!
+        
+        // Replace these entry IDs with yours from the pre-filled link
+        const FORM_FIELDS = {
+            name: 'entry.000000001',      // Replace with your field ID
+            email: 'entry.000000002',     // Replace with your field ID
+            phone: 'entry.000000003',     // Replace with your field ID
+            college: 'entry.000000004',   // Replace with your field ID
+            department: 'entry.000000005', // Replace with your field ID
+            year: 'entry.000000006',      // Replace with your field ID
+            events: 'entry.000000007',    // Replace with your field ID
+            teamMembers: 'entry.000000008', // Replace with your field ID
+            comments: 'entry.000000009'   // Replace with your field ID
+        };
+
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check if at least one event is selected
+            const checkboxes = document.querySelectorAll('input[name="events"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Please select at least one event to participate in!');
+                return;
+            }
+
+            // Check if Google Form URL is configured
+            if (GOOGLE_FORM_URL === 'YOUR_GOOGLE_FORM_URL') {
+                alert('⚠️ Google Forms integration not set up yet!\n\nThe form data is being logged to the console for now.\n\nPlease follow the setup instructions in the code to connect to Google Forms.');
+                console.log('📋 Registration Data:', {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    college: document.getElementById('college').value,
+                    department: document.getElementById('department').value,
+                    year: document.getElementById('year').value,
+                    events: Array.from(checkboxes).map(cb => cb.value),
+                    teamMembers: document.getElementById('teamMembers').value,
+                    comments: document.getElementById('comments').value
+                });
+                
+                // Show success message anyway for demo
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                document.getElementById('teamMembersSection').style.display = 'none';
+                
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+                
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // Collect selected events
+            const selectedEvents = Array.from(checkboxes).map(cb => {
+                const labels = {
+                    'simutech': 'Simutech Arena',
+                    'murder-mystery': 'Murder Mystery',
+                    'concept-clash': 'Concept Clash',
+                    'code-sprint': 'Code Sprint'
+                };
+                return labels[cb.value];
+            }).join(', ');
+
+            // Create form data for Google Forms
+            const formData = new FormData();
+            formData.append(FORM_FIELDS.name, document.getElementById('name').value);
+            formData.append(FORM_FIELDS.email, document.getElementById('email').value);
+            formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
+            formData.append(FORM_FIELDS.college, document.getElementById('college').value);
+            formData.append(FORM_FIELDS.department, document.getElementById('department').value);
+            formData.append(FORM_FIELDS.year, document.getElementById('year').value);
+            formData.append(FORM_FIELDS.events, selectedEvents);
+            formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
+            formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
+
+            // Submit to Google Forms
+            fetch(GOOGLE_FORM_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(function() {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                document.getElementById('registrationForm').reset();
+                document.getElementById('teamMembersSection').style.display = 'none';
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }).catch(function(error) {
+                alert('There was an error submitting the form. Please try again.');
+                console.error('Form submission error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
