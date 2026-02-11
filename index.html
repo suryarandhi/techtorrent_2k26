@@ -43,6 +43,16 @@
             flex-wrap: wrap;
         }
 
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
         .logo-placeholder {
             width: 80px;
             height: 80px;
@@ -351,13 +361,23 @@
     <div class="container">
         <div class="header">
             <div class="logos">
-                <div class="https://i.ibb.co/GQVn4Rpy/Screenshot-2026-02-11-235024.png">Academy Logo</div>
+                <!-- Academy Logo -->
+                <img src="https://i.ibb.co/GQVn4Rpy/Screenshot-2026-02-11-235024.png" 
+                     alt="Siddhartha Academy Logo" 
+                     class="logo-img">
+                <div class="logo-placeholder" style="display: none;">Academy Logo</div>
+                
                 <div>
                     <h1>TECHTORRENT 2K26</h1>
                     <h2>SIDDHARTHA ACADEMY OF HIGHER EDUCATION</h2>
                     <p>An Institution Deemed to be University</p>
                 </div>
-                <div class="ttps://i.ibb.co/Jw2yRzzQ/Whats-App-Image-2025-12-21-at-11-02-29-PM.jpg">IETE Logo</div>
+                
+                <!-- IETE Logo -->
+                <img src="https://i.ibb.co/Jw2yRzzQ/Whats-App-Image-2025-12-21-at-11-02-29-PM.jpg" 
+                     alt="IETE Logo" 
+                     class="logo-img">
+                <div class="logo-placeholder" style="display: none;">IETE Logo</div>
             </div>
         </div>
 
