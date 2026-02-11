@@ -1,222 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechTorrent 2K26 - Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTorrent 2K26 - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-background:linear-gradient(135deg,#6366f1 0%,#ec4899 50%,#f59e0b 100%);
-min-height:100vh;padding:20px;
-}
-.container{
-max-width:1200px;margin:0 auto;background:white;
-border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;
-}
-.header{
-background:linear-gradient(135deg,#ff6b6b 0%,#f06595 50%,#ff8c42 100%);
-padding:40px;text-align:center;color:white;
-}
-.logos{
-display:flex;justify-content:center;align-items:center;
-gap:30px;margin-bottom:20px;flex-wrap:wrap;
-}
-.logo-img{
-width:100px;height:100px;object-fit:contain;
-background:white;border-radius:50%;padding:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-.header h1{font-size:3em;margin-bottom:10px;}
-.header h2{font-size:1.5em;font-weight:normal;}
-.event-info{text-align:center;padding:30px;background:#f8f9fa;}
-.event-date{
-display:inline-block;background:#333;color:white;
-padding:15px 40px;border-radius:50px;font-size:1.2em;font-weight:bold;
-}
-.registration-section{
-padding:50px 40px;
-background:linear-gradient(135deg,#dbeafe 0%,#e0e7ff 50%,#fce7f3 100%);
-}
-.registration-section h2{text-align:center;margin-bottom:30px;}
-.form-grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;max-width:900px;margin:auto;
-}
-.form-group{display:flex;flex-direction:column;}
-.form-group.full-width{grid-column:1/-1;}
-label{margin-bottom:8px;font-weight:600;}
-input,select,textarea{
-padding:12px;border:2px solid #d1d5db;border-radius:8px;
-}
-input:focus,select:focus,textarea:focus{
-outline:none;border-color:#f43f5e;
-}
-textarea{min-height:100px;}
-.submit-btn{
-grid-column:1/-1;padding:15px;
-background:linear-gradient(135deg,#f43f5e,#ec4899,#f59e0b);
-color:white;border:none;border-radius:50px;font-size:1.1em;
-cursor:pointer;
-}
-.success-message{
-display:none;background:#10b981;color:white;
-padding:15px;border-radius:10px;margin-top:20px;text-align:center;
-}
-.contact-info{
-background:#111827;color:white;padding:40px;text-align:center;
-}
-</style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #f59e0b 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #f06595 50%, #ff8c42 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header h2 {
+            font-size: 1.5em;
+            font-weight: normal;
+            opacity: 0.95;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .event-info {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .event-card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .event-card.yellow {
+            background: linear-gradient(135deg, #ffd93d 0%, #ffb700 100%);
+        }
+
+        .event-card.coral {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+        }
+
+        .event-card.purple {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .event-card.cyan {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+        }
+
+        .event-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .event-card.yellow h3,
+        .event-card.yellow p,
+        .event-card.yellow li {
+            color: #1f2937;
+        }
+
+        .event-card.coral h3,
+        .event-card.coral p,
+        .event-card.coral li,
+        .event-card.purple h3,
+        .event-card.purple p,
+        .event-card.purple li,
+        .event-card.cyan h3,
+        .event-card.cyan p,
+        .event-card.cyan li {
+            color: white;
+        }
+
+        .event-card p {
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .event-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .event-card li {
+            padding: 5px 0;
+            color: #4b5563;
+        }
+
+        .event-card li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .event-card.yellow li:before {
+            color: #059669;
+        }
+
+        .event-card.coral li:before,
+        .event-card.purple li:before,
+        .event-card.cyan li:before {
+            color: #fde047;
+        }
+
+        .registration-section {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 50%, #fce7f3 100%);
+        }
+
+        .registration-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #f43f5e;
+            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            margin-top: 20px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #f59e0b 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(244, 63, 94, 0.5);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .coordinators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coordinator {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(236, 72, 153, 0.3));
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .coordinator p {
+            margin: 5px 0;
+        }
+
+        .venue {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header h2 {
+                font-size: 1.2em;
+            }
+
+            .events-grid {
+                padding: 20px;
+            }
+
+            .registration-section {
+                padding: 30px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="header">
+            <div class="logos">
+                <!-- Academy Logo -->
+                <img src="https://i.ibb.co/GQVn4Rpy/Screenshot-2026-02-11-235024.png" 
+                     alt="Siddhartha Academy Logo" 
+                     class="logo-img">
+                <div class="logo-placeholder" style="display: none;">Academy Logo</div>
+                
+                <div>
+                    <h1>TECHTORRENT 2K26</h1>
+                    <h2>SIDDHARTHA ACADEMY OF HIGHER EDUCATION</h2>
+                    <p>An Institution Deemed to be University</p>
+                </div>
+                
+                <!-- IETE Logo -->
+                <img src="iete-logo.jpeg" 
+                     alt="IETE Logo" 
+                     class="logo-img">
+                <div class="logo-placeholder" style="display: none;">IETE Logo</div>
+            </div>
+        </div>
 
-<div class="container">
+        <div class="event-info">
+            <div class="event-date">📅 February 16th - 17th, 2K26</div>
+            <h2 style="color: #1f2937; margin-top: 20px;">A 2-Day Technical Event by IETE</h2>
+        </div>
 
-<div class="header">
-<div class="logos">
-<img src="https://i.ibb.co/GQVn4Rpy/Screenshot-2026-02-11-235024.png" class="logo-img">
-<div>
-<h1>TECHTORRENT 2K26</h1>
-<h2>SIDDHARTHA ACADEMY OF HIGHER EDUCATION</h2>
-<p>An Institution Deemed to be University</p>
-</div>
-<img src="iete-logo.jpeg" class="logo-img">
-</div>
-</div>
+        <div class="events-grid">
+            <div class="event-card yellow">
+                <h3>🎯 SIMUTECH ARENA</h3>
+                <p><strong>Simulation Challenge</strong></p>
+                <p>Solve a given text/circuit problem and demonstrate results through simulation.</p>
+            </div>
 
-<div class="event-info">
-<div class="event-date">📅 February 16th - 17th, 2K26</div>
-<h2>A 2-Day Technical Event by IETE</h2>
-</div>
+            <div class="event-card coral">
+                <h3>🔍 MURDER MYSTERY</h3>
+                <p><strong>Digital Detective Quiz</strong></p>
+                <ul>
+                    <li>Text Round</li>
+                    <li>Video Round</li>
+                    <li>Audio Round</li>
+                    <li>Image Round</li>
+                </ul>
+            </div>
 
-<div class="registration-section">
-<h2>🎓 Register Now</h2>
+            <div class="event-card purple">
+                <h3>💡 CONCEPT CLASH</h3>
+                <p><strong>(Spot Idea Presentation)</strong></p>
+                <ul>
+                    <li>Team of 3</li>
+                    <li>Themes revealed on the spot</li>
+                    <li>Prepare & present by afternoon</li>
+                </ul>
+            </div>
 
-<form id="registrationForm">
-<div class="form-grid">
+            <div class="event-card cyan">
+                <h3>💻 CODE SPRINT</h3>
+                <p><strong>Programming Challenge</strong></p>
+                <p>Solve coding problems in various programming languages and compile to show output.</p>
+            </div>
+        </div>
 
-<div class="form-group">
-<label>Full Name *</label>
-<input type="text" id="name" required>
-</div>
+        <div class="registration-section">
+            <h2>🎓 Register Now</h2>
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
 
-<div class="form-group">
-<label>Email *</label>
-<input type="email" id="email" required>
-</div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-<div class="form-group">
-<label>Phone *</label>
-<input type="tel" id="phone" pattern="[0-9]{10}" required>
-</div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                    </div>
 
-<div class="form-group">
-<label>College *</label>
-<input type="text" id="college" required>
-</div>
+                    <div class="form-group">
+                        <label for="college">College/University *</label>
+                        <input type="text" id="college" name="college" required>
+                    </div>
 
-<div class="form-group">
-<label>Department *</label>
-<input type="text" id="department" required>
-</div>
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
 
-<div class="form-group">
-<label>Year *</label>
-<select id="year" required>
-<option value="">Select Year</option>
-<option>1st Year</option>
-<option>2nd Year</option>
-<option>3rd Year</option>
-<option>4th Year</option>
-</select>
-</div>
+                    <div class="form-group">
+                        <label for="year">Year of Study *</label>
+                        <select id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
 
-<div class="form-group full-width">
-<label>Select Events *</label>
-<label><input type="checkbox" name="events" value="Simutech Arena"> Simutech Arena</label>
-<label><input type="checkbox" name="events" value="Murder Mystery"> Murder Mystery</label>
-<label><input type="checkbox" name="events" value="Concept Clash"> Concept Clash</label>
-<label><input type="checkbox" name="events" value="Code Sprint"> Code Sprint</label>
-</div>
+                    <div class="form-group full-width checkbox-group">
+                        <label style="font-weight: 600; margin-bottom: 15px;">Select Events to Participate *</label>
+                        <label>
+                            <input type="checkbox" name="events" value="simutech" id="event1">
+                            Simutech Arena
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="murder-mystery" id="event2">
+                            Murder Mystery
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="concept-clash" id="event3">
+                            Concept Clash (Team of 3)
+                        </label>
+                        <label>
+                            <input type="checkbox" name="events" value="code-sprint" id="event4">
+                            Code Sprint
+                        </label>
+                    </div>
 
-<div class="form-group full-width">
-<label>Team Members (if Concept Clash)</label>
-<textarea id="teamMembers"></textarea>
-</div>
+                    <div class="form-group full-width" id="teamMembersSection" style="display: none;">
+                        <label for="teamMembers">Team Members (for Concept Clash) - Names & Phone Numbers</label>
+                        <textarea id="teamMembers" name="teamMembers" placeholder="Member 1: Name, Phone&#10;Member 2: Name, Phone&#10;Member 3: Name, Phone"></textarea>
+                    </div>
 
-<div class="form-group full-width">
-<label>Additional Comments</label>
-<textarea id="comments"></textarea>
-</div>
+                    <div class="form-group full-width">
+                        <label for="comments">Additional Comments/Questions</label>
+                        <textarea id="comments" name="comments" placeholder="Any special requirements or questions?"></textarea>
+                    </div>
 
-<button type="submit" class="submit-btn">Register Now</button>
+                    <button type="submit" class="submit-btn">Register for TechTorrent 2K26</button>
+                </div>
+                <div class="success-message" id="successMessage">
+                    ✅ Registration Successful! We'll contact you soon with further details.
+                </div>
+            </form>
+        </div>
 
-</div>
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            
+            <p class="venue"><strong>📍 Venue:</strong> ECE Dept., V.L.DUTT Block, Siddhartha Academy Of Higher Education, Kanuru, Vijayawada, 520007</p>
 
-<div class="success-message" id="successMessage">
-✅ Registration Successful! Check your Google Form responses.
-</div>
+            <div style="margin: 30px 0;">
+                <p><strong>Faculty Co-ordinator:</strong> Dr. V. Saritha</p>
+                <p><strong>Contact:</strong> +91 9704148481</p>
+                <p><strong>Convenor:</strong> Dr. D. Venkata Rao</p>
+                <p><strong>(HOD-ECE, Dean-School of Engineering)</strong></p>
+            </div>
 
-</form>
-</div>
-
-<div class="contact-info">
-<h3>Contact Information</h3>
-<p>ECE Dept., V.L.DUTT Block, Vijayawada</p>
-<p>Faculty: Dr. V. Saritha</p>
-</div>
-
-</div>
+            <h3 style="margin-top: 40px;">Student Coordinators</h3>
+            <div class="coordinators">
+                <div class="coordinator">
+                    <p><strong>V. Jatin Karthik</strong></p>
+                    <p>📞 9441371143</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>R. Rahul Varma</strong></p>
+                    <p>📞 9573188933</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>G. Likitha Sri</strong></p>
+                    <p>📞 9618977807</p>
+                </div>
+                <div class="coordinator">
+                    <p><strong>P. Lokesh</strong></p>
+                    <p>📞 9182147151</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <script>
-const GOOGLE_FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSe7R3TioxgZeCP2J0aMH9k5OM2lnzHy2oSQZPPSjZvQuxTDTw/formResponse";
+    // Show/hide team members field based on Concept Clash selection
+    document.getElementById('event3').addEventListener('change', function() {
+        const teamSection = document.getElementById('teamMembersSection');
+        teamSection.style.display = this.checked ? 'block' : 'none';
+    });
 
-const FORM_FIELDS={
-name:'entry.1265900779',
-email:'entry.1958841164',
-phone:'entry.912644839',
-college:'entry.430500898',
-department:'entry.930767054',
-year:'entry.816691090',
-events:'entry.288554412',
-teamMembers:'entry.1553407769',
-comments:'entry.1789203818'
-};
+    // ✅ Your Google Form Action URL
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe7R3TioxgZeCP2J0aMH9k5OM2lnzHy2oSQZPPSjZvQuxTDTw/formResponse";
 
-document.getElementById('registrationForm').addEventListener('submit',function(e){
-e.preventDefault();
+    // ✅ Your Real Entry IDs
+    const FORM_FIELDS = {
+        name: 'entry.1265900779',
+        email: 'entry.1958841164',
+        phone: 'entry.912644839',
+        college: 'entry.430500898',
+        department: 'entry.930767054',
+        year: 'entry.816691090',
+        events: 'entry.288554412',
+        teamMembers: 'entry.1553407769',
+        comments: 'entry.1789203818'
+    };
 
-const selected=document.querySelectorAll('input[name="events"]:checked');
-if(selected.length===0){
-alert("Please select at least one event!");
-return;
-}
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-const eventList=Array.from(selected).map(cb=>cb.value).join(", ");
+        const checkboxes = document.querySelectorAll('input[name="events"]:checked');
+        if (checkboxes.length === 0) {
+            alert('Please select at least one event to participate in!');
+            return;
+        }
 
-const formData=new FormData();
-formData.append(FORM_FIELDS.name,document.getElementById('name').value);
-formData.append(FORM_FIELDS.email,document.getElementById('email').value);
-formData.append(FORM_FIELDS.phone,document.getElementById('phone').value);
-formData.append(FORM_FIELDS.college,document.getElementById('college').value);
-formData.append(FORM_FIELDS.department,document.getElementById('department').value);
-formData.append(FORM_FIELDS.year,document.getElementById('year').value);
-formData.append(FORM_FIELDS.events,eventList);
-formData.append(FORM_FIELDS.teamMembers,document.getElementById('teamMembers').value);
-formData.append(FORM_FIELDS.comments,document.getElementById('comments').value);
+        const selectedEvents = Array.from(checkboxes).map(cb => {
+            const labels = {
+                'simutech': 'Simutech Arena',
+                'murder-mystery': 'Murder Mystery',
+                'concept-clash': 'Concept Clash',
+                'code-sprint': 'Code Sprint'
+            };
+            return labels[cb.value];
+        }).join(', ');
 
-fetch(GOOGLE_FORM_URL,{method:'POST',mode:'no-cors',body:formData})
-.then(()=>{
-document.getElementById('successMessage').style.display='block';
-document.getElementById('registrationForm').reset();
-setTimeout(()=>{document.getElementById('successMessage').style.display='none';},5000);
-})
-.catch(()=>alert("Submission error!"));
-});
+        const formData = new FormData();
+        formData.append(FORM_FIELDS.name, document.getElementById('name').value);
+        formData.append(FORM_FIELDS.email, document.getElementById('email').value);
+        formData.append(FORM_FIELDS.phone, document.getElementById('phone').value);
+        formData.append(FORM_FIELDS.college, document.getElementById('college').value);
+        formData.append(FORM_FIELDS.department, document.getElementById('department').value);
+        formData.append(FORM_FIELDS.year, document.getElementById('year').value);
+        formData.append(FORM_FIELDS.events, selectedEvents);
+        formData.append(FORM_FIELDS.teamMembers, document.getElementById('teamMembers').value);
+        formData.append(FORM_FIELDS.comments, document.getElementById('comments').value);
+
+        fetch(GOOGLE_FORM_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        }).then(function() {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('registrationForm').reset();
+            document.getElementById('teamMembersSection').style.display = 'none';
+
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }).catch(function(error) {
+            alert('There was an error submitting the form. Please try again.');
+            console.error('Form submission error:', error);
+        });
+    });
 </script>
 
 </body>
-</html>
+</html> update
